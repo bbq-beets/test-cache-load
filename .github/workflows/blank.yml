@@ -1,0 +1,20 @@
+name: Test Cache download failure
+on:
+  workflow_dispatch:
+jobs:
+  java-example:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: tiwarishub/cache@402b512df840c041240324b08cc91a45c53e8533
+      id: cache
+      with:
+        path: /tmp/datacache
+        key: key1
+      env:
+        AZURE_LOG_LEVEL: info
+    - if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        rm -rf /tmp/datacache
+        mkdir -p /tmp/datacache
+        for y in {0..55};do openssl rand -out /tmp/datacache/data$y  -base64 $(( 50 * 2**20 * 3/4 )); done 
+        du -sh /tmp/datacache
