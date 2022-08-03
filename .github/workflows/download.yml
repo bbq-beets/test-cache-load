@@ -28,13 +28,11 @@ jobs:
           - 11
           - 17
     steps:
-    - uses: kotewar/cache@ecb94ea49de6df04e9273a6885388cb30133027d
+    - uses: kotewar/cache@eb2d86b1871be8baf5bf35283734e54446cca2e5
       id: cache
       with:
         path: /tmp/datacache
         key: key1
-      env:
-        AZURE_LOG_LEVEL: info
     - if: steps.cache.outputs.cache-hit != 'true'
       run: |
         rm -rf /tmp/datacache
