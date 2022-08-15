@@ -33,6 +33,8 @@ jobs:
       with:
         path: /tmp/datacache
         key: key1
+      env:
+        CACHE_DOWNLOAD_TIMEOUT_MINS: 0.1
     - if: steps.cache.outputs.cache-hit != 'true'
       run: |
         rm -rf /tmp/datacache
