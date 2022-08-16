@@ -28,13 +28,13 @@ jobs:
           - 11
           - 17
     steps:
-    - uses: kotewar/cache@09b777c1c531d067a0aec2287c7b8b498b1e6166
+    - uses: kotewar/cache@d56d19f88af65e4d3d8279f597a65fc745af550c
       id: cache
       with:
         path: /tmp/datacache
         key: key1
       env:
-        CACHE_DOWNLOAD_TIMEOUT_MINS: 0.1
+        CACHE_DOWNLOAD_TIMEOUT_MINS: 3
     - if: steps.cache.outputs.cache-hit != 'true'
       run: |
         rm -rf /tmp/datacache
